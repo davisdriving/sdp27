@@ -16,7 +16,7 @@ Adafruit_LIS3DH lis = Adafruit_LIS3DH();
 double Setpoint, Input, Output;
 
 // pid config
-double Kp=0, Ki=0, Kd=0;
+double Kp=2.5, Ki=0.1, Kd=0.01;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 
@@ -66,22 +66,26 @@ void readSerialTuning() {
 
       if (parameter != 'p' && parameter != 'P' &&
           parameter != 'i' && parameter != 'I' &&
-          parameter != 'd' && parameter != 'D') valid = false;
+          parameter != 'd' && parameter != 'D' &&
+          parameter != 's' && parameter != 'S') valid = false;
 
       if (valid) {
         switch (parameter) {
           case 'p': case 'P': Kp = value; break;
           case 'i': case 'I': Ki = value; break;
           case 'd': case 'D': Kd = value; break;
+          case 's': case 'S': Setpoint = value; break;
         }
 
-        myPID.SetTunings(Kp, Ki, Kd);
+        if (parameter != 's' && parameter != 'S') {
+          myPID.SetTunings(Kp, Ki, Kd);
+        }
         Serial.print(F("Set "));
         Serial.print(parameter);
         Serial.print('=');
         Serial.println(value, 4);
       } else if (commandLength > 0) {
-        Serial.println(F("Invalid tuning command"));
+        Serial.println(F("Invalid command: use p=x, i=x, d=x, or s=x"));
       }
       commandLength = 0;
     } else if (commandLength < sizeof(command) - 1) {
