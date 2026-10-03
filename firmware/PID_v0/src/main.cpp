@@ -16,13 +16,13 @@ Adafruit_LIS3DH lis = Adafruit_LIS3DH();
 double Setpoint, Input, Output;
 
 // pid config
-double Kp=2.5, Ki=0.1, Kd=0.01;
+double Kp=2.5, Ki=0.0, Kd=0.01;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 
 // accel filtering
 double filteredPitch = 0;
-const double LPF_CUTOFF_HZ = 10.0;
+const double LPF_CUTOFF_HZ = 30.0;
 const double CONTROL_HZ = 100.0;
 const double alpha =
   (2.0 * PI * LPF_CUTOFF_HZ) /
@@ -141,7 +141,7 @@ void setup() {
   pinMode(step_pin, OUTPUT);
   pinMode(dir_pin, OUTPUT);
 
-  Setpoint = 1; // we want the bot to be level, equates nonzero deg accel read
+  Setpoint = 2.2; // we want the bot to be level, equates nonzero deg accel read
   
   stepper.setMaxSpeed(MAX_RPM * steps_per_rev / 60.0);
   stepper.setMinPulseWidth(2); // Check the driver datasheet for its requirement.
