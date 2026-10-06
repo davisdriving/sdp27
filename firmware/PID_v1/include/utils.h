@@ -43,10 +43,10 @@ extern const unsigned long REVERSAL_PAUSE_MS;
 // Configures both bridges, leaves both motors coasting, and resets the test.
 void initMotors(void);
 
-// Controls both motors together at full available motor voltage.
-// true = original forward polarity; false = original backward polarity.
-// When reversing manually, coast first and allow the motors to slow down.
-void runMotor(bool forward);
+// Controls both motors together with signed PWM from -255 to 255.
+// Negative and positive values select opposite directions; zero coasts.
+// Direction reversals coast briefly before applying the new direction.
+void runMotor(int speed);
 
 // Disables both bridges so both motors coast.
 void coastMotor(void);

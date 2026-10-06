@@ -4,24 +4,22 @@
 #include <sh2.h>
 #include "utils.h"
 
-// ESP32-S3 -> L298N. These pins do not overlap the IMU SPI pins.
-const uint8_t IN1_PIN = 4;
-const uint8_t IN2_PIN = 6;
+// ESP32-S3 -> L298N. 
+const uint8_t IN1_PIN = 4; 
+const uint8_t IN2_PIN = 6; 
 const uint8_t ENA_PIN = 7;
 const uint8_t IN3_PIN = 17;
 const uint8_t IN4_PIN = 16;
 const uint8_t ENB_PIN = 15;
+
+static bool motorDirectionKnown = false;
+static bool motorForward = false;
 
 void setReports(void) { // define which reports to enable (BNO085 has many different options)
   Serial.println("Setting game rotation vector and gyroscope reports");
   if (! bno08x.enableReport(SH2_GAME_ROTATION_VECTOR)) {
     Serial.println("Could not enable game vector");
   }
-
-  // if (! bno08x.enableReport(SH2_GYROSCOPE_CALIBRATED)) {
-
-  //   Serial.println("Could not enable gyroscope");
-  // }
 }
 
 void calibrateIMU(void) {
@@ -43,17 +41,17 @@ void calibrateIMU(void) {
       continue;
     }
 
-    if (sensorValue.sensorId == SH2_GAME_ROTATION_VECTOR) {
-      rotationVector.accuracy = sensorValue.status & 0x03;
-      Serial.print("Game vector accuracy: ");
-      Serial.println(rotationVector.accuracy);
-    }
+    // if (sensorValue.sensorId == SH2_GAME_ROTATION_VECTOR) {
+    //   rotationVector.accuracy = sensorValue.status & 0x03;
+    //   Serial.print("Game vector accuracy: ");
+    //   Serial.println(rotationVector.accuracy);
+    // }
 
-    if (sensorValue.sensorId == SH2_GYROSCOPE_CALIBRATED) {
-      gyroscope.accuracy = sensorValue.status & 0x03;
-      Serial.print("Gyroscope accuracy: ");
-      Serial.println(gyroscope.accuracy);
-    }
+    // if (sensorValue.sensorId == SH2_GYROSCOPE_CALIBRATED) {
+    //   gyroscope.accuracy = sensorValue.status & 0x03;
+    //   Serial.print("Gyroscope accuracy: ");
+    //   Serial.println(gyroscope.accuracy);
+    // }
 
     if (Serial.available() && Serial.read() == 'c') {
       int result = sh2_saveDcdNow();
@@ -64,8 +62,11 @@ void calibrateIMU(void) {
 }
 
 void initMotors(void) {
+  motorDirectionKnown = false;
+
   pinMode(ENA_PIN, OUTPUT);
   digitalWrite(ENA_PIN, LOW);
+
   pinMode(ENB_PIN, OUTPUT);
   digitalWrite(ENB_PIN, LOW);
 
@@ -86,16 +87,27 @@ void coastMotor(void) {
 }
 
 
-void runMotor(bool forward) {
-  // Disable both bridges while changing direction.
-  digitalWrite(ENA_PIN, LOW);
-  digitalWrite(ENB_PIN, LOW);
-  delayMicroseconds(20);
+void runMotor(int speed) {
+  constrain(speed, -255, 255);
+  if (speed == 0) {
+    coastMotor();
+    return;
+  }
+
+  const bool forward = speed > 0;
+  if (motorDirectionKnown && forward != motorForward) {
+    coastMotor();
+    delay(5);
+  }
+  speed = abs(speed);
 
   digitalWrite(IN1_PIN, forward ? HIGH : LOW);
   digitalWrite(IN2_PIN, forward ? LOW : HIGH);
   digitalWrite(IN3_PIN, forward ? HIGH : LOW);
   digitalWrite(IN4_PIN, forward ? LOW : HIGH);
-  digitalWrite(ENA_PIN, HIGH);  // Full available motor voltage.
-  digitalWrite(ENB_PIN, HIGH);
+
+  analogWrite(ENA_PIN, speed);
+  analogWrite(ENB_PIN, speed);
+  motorForward = forward;
+  motorDirectionKnown = true;
 }

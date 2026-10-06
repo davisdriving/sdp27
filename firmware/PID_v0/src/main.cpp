@@ -16,7 +16,7 @@ Adafruit_LIS3DH lis = Adafruit_LIS3DH();
 double Setpoint, Input, Output;
 
 // pid config
-double Kp=2.5, Ki=0.0, Kd=0.01;
+double Kp=60, Ki=0.0, Kd=0.0;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 
