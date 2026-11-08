@@ -1,0 +1,3 @@
+[console_scripts]
+robstride-position = src.position_control:main
+robstride-speed = src.speed_control:main
