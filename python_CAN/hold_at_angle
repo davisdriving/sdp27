@@ -1,0 +1,63 @@
+import time
+import signal
+import sys
+import math as m
+from robstride_dynamics import RobstrideBus, ParameterType, Motor
+
+CALIBRATION = {
+    "motor_1": {"direction":  -1, "homing_offset":  -.34},
+    "motor_2": {"direction": 1, "homing_offset": -.85},
+}
+
+
+MOTORS={"motor_1": Motor(id=1, model="rs-01"), "motor_2": Motor(id=2, model="rs-01")}
+CHANNEL = "COM15"
+KP = 5
+KD = 0
+
+COMMON_TARGET = m.radians(30)  # Fixed shared target, in radians.
+PERIOD = 0.02  # Approximately 50 Hz per motor.
+
+def request_exit(signum, frame):
+    raise KeyboardInterrupt
+signal.signal(signal.SIGTERM, request_exit)
+
+
+bus = RobstrideBus(channel=CHANNEL, motors=MOTORS, calibration=CALIBRATION)
+
+try:
+    bus.connect()
+
+    for name in MOTORS:
+        bus.disable(name)
+        bus.write(name, ParameterType.MODE, 0)
+        bus.enable(name)
+
+    
+    while True:
+        cycle_started = time.monotonic()
+        for name in MOTORS:
+            # bus.py converts the same COMMON target to each motor's raw angle.
+            bus.write_operation_frame(
+                motor=name,
+                position=COMMON_TARGET,
+                kp=KP,
+                kd=KD,
+                velocity=0.0,     # Desired velocity; NOT a speed limit.
+                torque=2.0,       # No feedforward torque.
+            )
+            # Consume this motor's response before commanding the next motor.
+            bus.read_operation_frame(name)
+        time.sleep(max(0.0, PERIOD - (time.monotonic() - cycle_started)))
+except KeyboardInterrupt:
+    pass
+finally:
+    if bus.is_connected:
+        for name in MOTORS:
+            try:
+                bus.disable(name)
+            except Exception as exc:
+                print(f"WARNING: disable not confirmed for {name}: {exc}")
+        bus.disconnect(disable_torque=False)
+
+

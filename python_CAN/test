@@ -2,11 +2,7 @@ import time
 import sys
 import math as m
 from robstride_dynamics import RobstrideBus, ParameterType, Motor
-#                 max       min
-# motor 1 range: (-1 rad, -.35 rad)
 
-#                 max       min
-# motor 1 range: (-.2 rad, -.75 rad)
 calibration = {
     "motor_1": {"direction":  -1, "homing_offset":  -.34},
     "motor_2": {"direction": 1, "homing_offset": -.85},
@@ -15,6 +11,7 @@ calibration = {
 
 motors={"motor_1": Motor(id=1, model="rs-01"), "motor_2": Motor(id=2, model="rs-01")}
 CHANNEL = "COM15"
+
 try:
     bus = RobstrideBus(channel=CHANNEL, motors=motors)
     bus.connect()
