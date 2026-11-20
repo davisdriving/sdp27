@@ -1,8 +1,0 @@
-../Core/Src/motor.c:35:17:duty_to_compare	1
-../Core/Src/motor.c:41:13:set_duty	6
-../Core/Src/motor.c:46:13:set_dir_pins	1
-../Core/Src/motor.c:52:6:Motor_Init	2
-../Core/Src/motor.c:63:6:Motor_SetSpeed	7
-../Core/Src/motor.c:84:6:Motor_Brake	2
-../Core/Src/motor.c:91:6:Motor_Coast	2
-../Core/Src/motor.c:98:6:Motor_StopAll	1
