@@ -1,0 +1,34 @@
+import time
+import sys
+import math as m
+from robstride_dynamics import RobstrideBus, ParameterType, Motor
+
+calibration = {
+    "motor_1": {"direction":  -1, "homing_offset":  -.972},
+    "motor_2": {"direction": 1, "homing_offset": -.82},
+}
+
+
+motors={"motor_1": Motor(id=1, model="rs-01"), "motor_2": Motor(id=2, model="rs-01")}
+CHANNEL = "COM15"
+
+try:
+    bus = RobstrideBus(channel=CHANNEL, motors=motors)
+    bus.connect()
+    start = time.time()
+    while time.time() - start < 60:
+        for name in list(motors.keys()):
+            raw = bus.read(name, ParameterType.MECHANICAL_POSITION)
+            cal = calibration[name]
+            angle = (raw - cal["homing_offset"]) * cal["direction"]
+            print(f"{name} angle is {(angle * 180 / m.pi):.2f} deg")
+        time.sleep(.5)
+except Exception as e:
+    print("failed w/ Exception: ", e)
+
+
+bus.disconnect(disable_torque=False)
+
+sys.exit(90)
+
+

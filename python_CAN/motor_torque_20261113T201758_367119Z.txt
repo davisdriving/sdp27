@@ -1,0 +1,105 @@
+2026-11-13T20:17:58.367Z INFO Log file: C:\Users\mk3ow\OneDrive\Documents\PlatformIO\Projects\sdp27\python_CAN\motor_torque_20261113T201758_367119Z.txt (timestamps in UTC)
+2026-11-13T20:17:58.367Z INFO channel=COM15 target_deg=20.0 ramp_seconds=6.0 KP=20.000 KD=0.200 calibration={'motor_1': {'direction': -1, 'homing_offset': -0.972}}
+2026-11-13T20:18:00.386Z INFO CAN bus connected
+2026-11-13T20:18:00.390Z INFO motor_1 status_mode=0 fault_flags=none
+2026-11-13T20:18:00.396Z INFO motor_1 starting_angle_deg=-76.462
+2026-11-13T20:18:00.397Z INFO motor_1 status_mode=2 fault_flags=none
+2026-11-13T20:18:00.399Z INFO Ramping available motors to 20.0 degrees over 6.0 seconds, then holding. Ctrl+C stops monitoring and disables both motors.
+2026-11-13T20:18:00.401Z INFO motor_1 mode=control torque=-0.1837 Nm angle_deg=-76.083 target_deg=-76.462 velocity_rad_s=0.9789 temperature_C=32.6
+2026-11-13T20:18:00.425Z INFO motor_1 mode=control torque=1.7557 Nm angle_deg=-72.765 target_deg=-76.205 velocity_rad_s=2.9099 temperature_C=32.6
+2026-11-13T20:18:00.447Z INFO motor_1 mode=control torque=1.5471 Nm angle_deg=-68.854 target_deg=-75.706 velocity_rad_s=2.7407 temperature_C=32.6
+2026-11-13T20:18:00.470Z INFO motor_1 mode=control torque=0.3367 Nm angle_deg=-65.140 target_deg=-75.449 velocity_rad_s=2.5728 temperature_C=32.6
+2026-11-13T20:18:00.495Z INFO motor_1 mode=control torque=-0.6916 Nm angle_deg=-61.734 target_deg=-74.951 velocity_rad_s=2.0733 temperature_C=32.6
+2026-11-13T20:18:00.518Z INFO motor_1 mode=control torque=-1.1129 Nm angle_deg=-59.735 target_deg=-74.694 velocity_rad_s=0.7990 temperature_C=32.6
+2026-11-13T20:18:00.542Z INFO motor_1 mode=control torque=-1.4854 Nm angle_deg=-59.163 target_deg=-74.195 velocity_rad_s=0.3370 temperature_C=32.6
+2026-11-13T20:18:00.564Z INFO motor_1 mode=control torque=-0.8649 Nm angle_deg=-59.383 target_deg=-73.938 velocity_rad_s=-0.6244 temperature_C=32.6
+2026-11-13T20:18:00.588Z INFO motor_1 mode=control torque=-0.6771 Nm angle_deg=-60.372 target_deg=-73.440 velocity_rad_s=-0.6835 temperature_C=32.6
+2026-11-13T20:18:00.611Z INFO motor_1 mode=control torque=-0.1707 Nm angle_deg=-61.053 target_deg=-73.182 velocity_rad_s=-0.4015 temperature_C=32.6
+2026-11-13T20:18:00.634Z INFO motor_1 mode=control torque=-0.0991 Nm angle_deg=-61.229 target_deg=-72.684 velocity_rad_s=-0.0269 temperature_C=32.6
+2026-11-13T20:18:00.657Z INFO motor_1 mode=control torque=-0.1110 Nm angle_deg=-61.053 target_deg=-72.443 velocity_rad_s=0.2753 temperature_C=32.6
+2026-11-13T20:18:00.680Z INFO motor_1 mode=control torque=-0.1432 Nm angle_deg=-60.614 target_deg=-72.186 velocity_rad_s=0.3451 temperature_C=32.6
+2026-11-13T20:18:00.685Z INFO motor_1 mode=control torque=-0.1022 Nm angle_deg=-60.482 target_deg=-71.928 velocity_rad_s=0.3438 temperature_C=32.6
+2026-11-13T20:18:00.711Z INFO motor_1 mode=control torque=0.1946 Nm angle_deg=-60.416 target_deg=-71.687 velocity_rad_s=-0.1061 temperature_C=32.6
+2026-11-13T20:18:00.718Z INFO motor_1 mode=control torque=0.1634 Nm angle_deg=-60.482 target_deg=-71.430 velocity_rad_s=-0.0927 temperature_C=32.6
+2026-11-13T20:18:00.739Z INFO motor_1 mode=control torque=0.0031 Nm angle_deg=-60.438 target_deg=-71.173 velocity_rad_s=0.1195 temperature_C=32.6
+2026-11-13T20:18:00.764Z INFO motor_1 mode=control torque=0.1261 Nm angle_deg=-60.262 target_deg=-70.674 velocity_rad_s=0.1558 temperature_C=32.6
+2026-11-13T20:18:00.788Z INFO motor_1 mode=control torque=0.2449 Nm angle_deg=-59.932 target_deg=-70.433 velocity_rad_s=0.2095 temperature_C=32.6
+2026-11-13T20:18:00.809Z INFO motor_1 mode=control torque=0.4026 Nm angle_deg=-59.779 target_deg=-69.919 velocity_rad_s=0.0282 temperature_C=32.6
+2026-11-13T20:18:00.831Z INFO motor_1 mode=control torque=0.4680 Nm angle_deg=-59.625 target_deg=-69.678 velocity_rad_s=0.0591 temperature_C=32.6
+2026-11-13T20:18:00.856Z INFO motor_1 mode=control torque=0.5645 Nm angle_deg=-59.625 target_deg=-69.163 velocity_rad_s=-0.0161 temperature_C=32.6
+2026-11-13T20:18:00.878Z INFO motor_1 mode=control torque=0.5671 Nm angle_deg=-59.625 target_deg=-68.922 velocity_rad_s=-0.0242 temperature_C=32.6
+2026-11-13T20:18:00.900Z INFO motor_1 mode=control torque=0.9956 Nm angle_deg=-59.625 target_deg=-68.424 velocity_rad_s=0.0416 temperature_C=32.6
+2026-11-13T20:18:00.923Z INFO motor_1 mode=control torque=0.9832 Nm angle_deg=-59.603 target_deg=-68.166 velocity_rad_s=-0.0228 temperature_C=32.6
+2026-11-13T20:18:00.945Z INFO motor_1 mode=control torque=0.9774 Nm angle_deg=-59.581 target_deg=-67.668 velocity_rad_s=0.0389 temperature_C=32.6
+2026-11-13T20:18:00.967Z INFO motor_1 mode=control torque=1.3090 Nm angle_deg=-59.537 target_deg=-67.411 velocity_rad_s=-0.0242 temperature_C=32.6
+2026-11-13T20:18:00.991Z INFO motor_1 mode=control torque=1.2358 Nm angle_deg=-59.493 target_deg=-67.153 velocity_rad_s=0.0470 temperature_C=32.6
+2026-11-13T20:18:01.013Z INFO motor_1 mode=control torque=1.3251 Nm angle_deg=-59.493 target_deg=-66.655 velocity_rad_s=0.0161 temperature_C=32.6
+2026-11-13T20:18:01.035Z INFO motor_1 mode=control torque=1.4158 Nm angle_deg=-59.493 target_deg=-66.414 velocity_rad_s=0.0255 temperature_C=32.6
+2026-11-13T20:18:01.058Z INFO motor_1 mode=control torque=1.7339 Nm angle_deg=-59.471 target_deg=-65.899 velocity_rad_s=-0.0336 temperature_C=32.6
+2026-11-13T20:18:01.080Z INFO motor_1 mode=control torque=1.9487 Nm angle_deg=-59.405 target_deg=-65.658 velocity_rad_s=-0.0094 temperature_C=32.6
+2026-11-13T20:18:01.104Z INFO motor_1 mode=control torque=1.7085 Nm angle_deg=-59.361 target_deg=-65.144 velocity_rad_s=-0.0121 temperature_C=32.6
+2026-11-13T20:18:01.126Z INFO motor_1 mode=control torque=2.0970 Nm angle_deg=-59.295 target_deg=-64.903 velocity_rad_s=0.0551 temperature_C=32.6
+2026-11-13T20:18:01.148Z INFO motor_1 mode=control torque=2.1064 Nm angle_deg=-59.295 target_deg=-64.404 velocity_rad_s=-0.0685 temperature_C=32.6
+2026-11-13T20:18:01.171Z INFO motor_1 mode=control torque=2.4747 Nm angle_deg=-59.273 target_deg=-64.147 velocity_rad_s=0.0215 temperature_C=32.6
+2026-11-13T20:18:01.195Z INFO motor_1 mode=control torque=2.2724 Nm angle_deg=-59.207 target_deg=-63.890 velocity_rad_s=0.0712 temperature_C=32.6
+2026-11-13T20:18:01.204Z INFO motor_1 mode=control torque=2.1930 Nm angle_deg=-59.163 target_deg=-63.649 velocity_rad_s=0.0940 temperature_C=32.6
+2026-11-13T20:18:01.228Z INFO motor_1 mode=control torque=2.4986 Nm angle_deg=-58.900 target_deg=-63.134 velocity_rad_s=0.2941 temperature_C=32.6
+2026-11-13T20:18:01.252Z INFO motor_1 mode=control torque=2.2548 Nm angle_deg=-58.438 target_deg=-62.893 velocity_rad_s=0.5103 temperature_C=32.6
+2026-11-13T20:18:01.275Z INFO motor_1 mode=control torque=2.0519 Nm angle_deg=-57.603 target_deg=-62.395 velocity_rad_s=0.7748 temperature_C=32.6
+2026-11-13T20:18:01.296Z INFO motor_1 mode=control torque=2.0291 Nm angle_deg=-56.658 target_deg=-62.137 velocity_rad_s=0.7600 temperature_C=32.6
+2026-11-13T20:18:01.318Z INFO motor_1 mode=control torque=1.9622 Nm angle_deg=-55.670 target_deg=-61.880 velocity_rad_s=0.7144 temperature_C=32.6
+2026-11-13T20:18:01.325Z INFO motor_1 mode=control torque=1.8122 Nm angle_deg=-55.384 target_deg=-61.639 velocity_rad_s=0.7211 temperature_C=32.6
+2026-11-13T20:18:01.348Z INFO motor_1 mode=control torque=1.5284 Nm angle_deg=-54.461 target_deg=-61.382 velocity_rad_s=0.6459 temperature_C=32.6
+2026-11-13T20:18:01.371Z INFO motor_1 mode=control torque=1.4205 Nm angle_deg=-53.670 target_deg=-60.883 velocity_rad_s=0.4673 temperature_C=32.6
+2026-11-13T20:18:01.393Z INFO motor_1 mode=control torque=1.2555 Nm angle_deg=-53.143 target_deg=-60.626 velocity_rad_s=0.2216 temperature_C=32.6
+2026-11-13T20:18:01.418Z INFO motor_1 mode=control torque=1.2389 Nm angle_deg=-52.835 target_deg=-60.128 velocity_rad_s=0.1182 temperature_C=32.6
+2026-11-13T20:18:01.442Z INFO motor_1 mode=control torque=1.5803 Nm angle_deg=-52.527 target_deg=-59.871 velocity_rad_s=0.1235 temperature_C=32.6
+2026-11-13T20:18:01.466Z INFO motor_1 mode=control torque=1.2872 Nm angle_deg=-52.330 target_deg=-59.372 velocity_rad_s=0.0806 temperature_C=32.6
+2026-11-13T20:18:01.487Z INFO motor_1 mode=control torque=1.5538 Nm angle_deg=-52.198 target_deg=-59.115 velocity_rad_s=0.1182 temperature_C=32.6
+2026-11-13T20:18:01.511Z INFO motor_1 mode=control torque=1.6005 Nm angle_deg=-51.978 target_deg=-58.617 velocity_rad_s=0.2847 temperature_C=32.6
+2026-11-13T20:18:01.533Z INFO motor_1 mode=control torque=1.5450 Nm angle_deg=-51.539 target_deg=-58.375 velocity_rad_s=0.3088 temperature_C=32.6
+2026-11-13T20:18:01.556Z INFO motor_1 mode=control torque=1.5782 Nm angle_deg=-51.033 target_deg=-57.861 velocity_rad_s=0.4015 temperature_C=32.6
+2026-11-13T20:18:01.579Z INFO motor_1 mode=control torque=1.5518 Nm angle_deg=-50.484 target_deg=-57.620 velocity_rad_s=0.4915 temperature_C=32.6
+2026-11-13T20:18:01.602Z INFO motor_1 mode=control torque=1.6493 Nm angle_deg=-49.825 target_deg=-57.363 velocity_rad_s=0.5667 temperature_C=32.6
+2026-11-13T20:18:01.611Z INFO motor_1 mode=control torque=1.2311 Nm angle_deg=-49.539 target_deg=-57.105 velocity_rad_s=0.5600 temperature_C=32.6
+2026-11-13T20:18:01.634Z INFO motor_1 mode=control torque=0.9531 Nm angle_deg=-48.682 target_deg=-56.607 velocity_rad_s=0.6701 temperature_C=32.6
+2026-11-13T20:18:01.655Z INFO motor_1 mode=control torque=1.2431 Nm angle_deg=-47.935 target_deg=-56.366 velocity_rad_s=0.4324 temperature_C=32.6
+2026-11-13T20:18:01.680Z INFO motor_1 mode=control torque=0.9961 Nm angle_deg=-47.605 target_deg=-56.109 velocity_rad_s=0.1786 temperature_C=32.6
+2026-11-13T20:18:01.690Z INFO motor_1 mode=control torque=0.8680 Nm angle_deg=-47.452 target_deg=-55.851 velocity_rad_s=0.2404 temperature_C=32.6
+2026-11-13T20:18:01.711Z INFO motor_1 mode=control torque=1.0018 Nm angle_deg=-47.012 target_deg=-55.353 velocity_rad_s=0.3948 temperature_C=32.6
+2026-11-13T20:18:01.737Z INFO motor_1 mode=control torque=1.1113 Nm angle_deg=-46.770 target_deg=-55.096 velocity_rad_s=0.0913 temperature_C=32.6
+2026-11-13T20:18:01.759Z INFO motor_1 mode=control torque=1.2135 Nm angle_deg=-46.792 target_deg=-54.855 velocity_rad_s=-0.0148 temperature_C=32.6
+2026-11-13T20:18:01.766Z INFO motor_1 mode=control torque=1.2317 Nm angle_deg=-46.792 target_deg=-54.597 velocity_rad_s=0.0430 temperature_C=32.6
+2026-11-13T20:18:01.789Z INFO motor_1 mode=control torque=1.3951 Nm angle_deg=-46.792 target_deg=-54.356 velocity_rad_s=-0.1209 temperature_C=32.6
+2026-11-13T20:18:01.794Z INFO motor_1 mode=control torque=1.3930 Nm angle_deg=-46.814 target_deg=-54.099 velocity_rad_s=-0.0134 temperature_C=32.6
+2026-11-13T20:18:01.818Z INFO motor_1 mode=control torque=1.6306 Nm angle_deg=-46.792 target_deg=-53.842 velocity_rad_s=-0.0752 temperature_C=32.6
+2026-11-13T20:18:01.839Z INFO motor_1 mode=control torque=1.7712 Nm angle_deg=-46.814 target_deg=-53.343 velocity_rad_s=-0.0792 temperature_C=32.6
+2026-11-13T20:18:01.863Z INFO motor_1 mode=control torque=1.8070 Nm angle_deg=-46.814 target_deg=-53.086 velocity_rad_s=0.0242 temperature_C=32.6
+2026-11-13T20:18:01.887Z INFO motor_1 mode=control torque=1.9751 Nm angle_deg=-46.858 target_deg=-52.588 velocity_rad_s=-0.0537 temperature_C=32.6
+2026-11-13T20:18:01.911Z INFO motor_1 mode=control torque=2.0478 Nm angle_deg=-46.880 target_deg=-52.347 velocity_rad_s=0.0403 temperature_C=32.6
+2026-11-13T20:18:01.920Z INFO motor_1 mode=control torque=2.1790 Nm angle_deg=-46.880 target_deg=-52.089 velocity_rad_s=-0.0591 temperature_C=32.6
+2026-11-13T20:18:01.944Z INFO motor_1 mode=control torque=2.2781 Nm angle_deg=-46.924 target_deg=-51.832 velocity_rad_s=-0.0497 temperature_C=32.6
+2026-11-13T20:18:01.967Z INFO motor_1 mode=control torque=2.4151 Nm angle_deg=-47.012 target_deg=-51.334 velocity_rad_s=-0.1088 temperature_C=32.6
+2026-11-13T20:18:01.990Z INFO motor_1 mode=control torque=2.6491 Nm angle_deg=-47.188 target_deg=-51.076 velocity_rad_s=-0.1303 temperature_C=32.6
+2026-11-13T20:18:02.014Z INFO motor_1 mode=control torque=2.8052 Nm angle_deg=-47.342 target_deg=-50.578 velocity_rad_s=-0.0846 temperature_C=32.6
+2026-11-13T20:18:02.035Z INFO motor_1 mode=control torque=2.8965 Nm angle_deg=-47.430 target_deg=-50.337 velocity_rad_s=-0.1531 temperature_C=32.6
+2026-11-13T20:18:02.046Z INFO motor_1 mode=control torque=2.9847 Nm angle_deg=-47.473 target_deg=-50.080 velocity_rad_s=-0.1383 temperature_C=32.6
+2026-11-13T20:18:02.069Z INFO motor_1 mode=control torque=3.3822 Nm angle_deg=-47.583 target_deg=-49.822 velocity_rad_s=-0.1638 temperature_C=32.6
+2026-11-13T20:18:02.091Z INFO motor_1 mode=control torque=3.5347 Nm angle_deg=-47.847 target_deg=-49.324 velocity_rad_s=-0.2068 temperature_C=32.6
+2026-11-13T20:18:02.114Z INFO motor_1 mode=control torque=3.5788 Nm angle_deg=-47.979 target_deg=-49.067 velocity_rad_s=-0.0457 temperature_C=32.6
+2026-11-13T20:18:02.138Z INFO motor_1 mode=control torque=3.7536 Nm angle_deg=-48.023 target_deg=-48.568 velocity_rad_s=-0.0363 temperature_C=32.6
+2026-11-13T20:18:02.166Z INFO motor_1 mode=control torque=3.7469 Nm angle_deg=-48.023 target_deg=-48.070 velocity_rad_s=-0.0725 temperature_C=32.6
+2026-11-13T20:18:02.189Z INFO motor_1 mode=control torque=3.7469 Nm angle_deg=-48.023 target_deg=-47.813 velocity_rad_s=-0.0725 temperature_C=32.6
+2026-11-13T20:18:02.211Z INFO motor_1 mode=control torque=3.7469 Nm angle_deg=-48.023 target_deg=-47.314 velocity_rad_s=-0.0725 temperature_C=32.6
+2026-11-13T20:18:02.235Z INFO motor_1 mode=control torque=3.7469 Nm angle_deg=-48.023 target_deg=-47.057 velocity_rad_s=-0.0725 temperature_C=32.6
+2026-11-13T20:18:02.255Z INFO motor_1 mode=control torque=3.9653 Nm angle_deg=-48.001 target_deg=-46.816 velocity_rad_s=0.0269 temperature_C=32.6
+2026-11-13T20:18:02.377Z ERROR motor_1 torque=unavailable mode=monitor_only stage=control error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-13T20:18:02.488Z ERROR motor_1 disable not confirmed: No matching response from motor_1 within timeout
+2026-11-13T20:18:02.599Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-13T20:18:03.476Z INFO motor_1 mode=monitor_only torque=-0.0000 Nm source=parameter
+2026-11-13T20:18:04.481Z INFO motor_1 mode=monitor_only torque=-0.0000 Nm source=parameter
+2026-11-13T20:18:05.451Z INFO User requested stop; disabling motors
+2026-11-13T20:18:05.456Z INFO motor_1 status_mode=0 fault_flags=none
+2026-11-13T20:18:05.456Z INFO motor_1 shutdown disable confirmed
+2026-11-13T20:18:05.456Z INFO CAN bus disconnected
+2026-11-13T20:18:05.456Z INFO Monitoring stopped; saving log

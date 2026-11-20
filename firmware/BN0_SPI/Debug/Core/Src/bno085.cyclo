@@ -1,0 +1,6 @@
+../Core/Src/bno085.c:33:17:transfer	6
+../Core/Src/bno085.c:58:14:q_to_float	1
+../Core/Src/bno085.c:65:13:parse	10
+../Core/Src/bno085.c:95:13:make_set_feature	1
+../Core/Src/bno085.c:108:6:BNO085_Init	3
+../Core/Src/bno085.c:131:6:BNO085_Service	4

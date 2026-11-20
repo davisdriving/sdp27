@@ -1,11 +1,6 @@
 {
-    "python-envs.pythonProjects": [
-        {
-            "path": ".",
-            "envManager": "ms-python.python:conda",
-            "packageManager": "ms-python.python:conda"
-        }
-    ],
     "cmake.sourceDirectory": "C:/Users/mk3ow/OneDrive/Documents/PlatformIO/Projects/sdp27/RobStride_Control/cpp",
-    "cmake.autoDetectSourceDirectory": false
+    "cmake.autoDetectSourceDirectory": false,
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda"
 }

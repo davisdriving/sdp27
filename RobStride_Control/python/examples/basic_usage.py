@@ -11,7 +11,7 @@ import time
 import math
 
 # Add the python directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'python'))
+sys.path.insert(0, os.path.join(r'C:\Users\mk3ow\OneDrive\Documents\PlatformIO\Projects\sdp27\RobStride_Control\python'))
 
 try:
     from src.position_control import PositionControllerMIT
@@ -20,7 +20,7 @@ except ImportError:
     print("❌ Cannot import motor control modules")
     sys.exit(1)
 
-def test_position_control(motor_id=11):
+def test_position_control(motor_id=1):
     """Test position control with basic movements"""
     print(f"\n🎯 Testing Position Control (Motor {motor_id})")
     print("=" * 50)
@@ -47,7 +47,7 @@ def test_position_control(motor_id=11):
         for angle, description in movements:
             print(f"📍 Moving to {description}: {angle}°")
             controller.set_angle(angle)
-            time.sleep(2.0)  # Wait for movement to complete
+            time.sleep(2)  # Wait for movement to complete
 
         print("✅ Position control test completed!")
         return True
@@ -58,7 +58,7 @@ def test_position_control(motor_id=11):
     finally:
         controller.stop_and_exit()
 
-def test_speed_control(motor_id=11):
+def test_speed_control(motor_id=1):
     """Test speed control with basic movements"""
     print(f"\n⚡ Testing Speed Control (Motor {motor_id})")
     print("=" * 50)
@@ -132,12 +132,12 @@ def main():
     print("=" * 50)
 
     # Get motor ID from command line or use default
-    motor_id = 11
+    motor_id = 1
     if len(sys.argv) > 1:
         try:
             motor_id = int(sys.argv[1])
         except ValueError:
-            print("❌ Invalid motor ID. Using default (11)")
+            print("❌ Invalid motor ID. Using default (1)")
 
     print(f"Using Motor ID: {motor_id}")
 

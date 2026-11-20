@@ -29,7 +29,7 @@ except ImportError:
         sys.exit(1)
 
 class SpeedController:
-    def __init__(self, motor_id: int, channel='can0'):
+    def __init__(self, motor_id: int, channel='COM15'):
         self.motor_id = motor_id
         self.motor_name = f"motor_{motor_id}"
         self.channel = channel

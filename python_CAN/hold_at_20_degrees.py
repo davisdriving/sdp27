@@ -14,20 +14,17 @@ import sys
 import time
 
 # Use the RobstrideBus implementation included in this repository.
-sys.path.insert(
-    0, str(Path(__file__).resolve().parents[1] / "RobStride_Control" / "python")
-)
+sys.path.insert(0, r'C:\Users\mk3ow\OneDrive\Documents\PlatformIO\Projects\sdp27\RobStride_Control\python')
+
 from robstride_dynamics import CommunicationType, Motor, ParameterType, RobstrideBus
 
 
 # Calibration from python_CAN/test; homing offsets are in radians.
 CALIBRATION = {
-    "motor_1": {"direction": -1, "homing_offset": -0.34},
-    "motor_2": {"direction": 1, "homing_offset": -0.85},
+    "motor_1": {"direction":  -1, "homing_offset":  -.972},
 }
 MOTORS = {
     "motor_1": Motor(id=1, model="rs-01"),
-    "motor_2": Motor(id=2, model="rs-01"),
 }
 CHANNEL = "COM15"
 COMMON_TARGET = math.radians(20.0)

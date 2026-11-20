@@ -18,7 +18,7 @@ import signal
 from typing import Optional
 
 # 尝试导入 SDK
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, r'C:\Users\mk3ow\OneDrive\Documents\PlatformIO\Projects\sdp27\RobStride_Control\python\robstride_dynamics')
 try:
     from robstride_dynamics import RobstrideBus, Motor, ParameterType, CommunicationType
 except ImportError:
@@ -31,7 +31,7 @@ except ImportError:
         sys.exit(1)
 
 class PositionControllerMIT:
-    def __init__(self, motor_id: int, channel='can0'):
+    def __init__(self, motor_id: int, channel='COM15'):
         self.motor_id = motor_id
         self.motor_name = f"motor_{motor_id}"
         self.channel = channel
