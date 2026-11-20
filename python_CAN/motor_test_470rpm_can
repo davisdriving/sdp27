@@ -1,0 +1,397 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2026 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "usb_device.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "usbd_cdc_if.h"
+#include <string.h>
+#include <stdio.h>
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+#define HOST_ID   0xFD   /* this board's ID on the bus */
+#define MOTOR_ID  0x7F   /* RobStride factory default 127 - change if yours differs */
+
+/* RobStride parameter indexes */
+#define RS_RUN_MODE   0x7005  /* uint8: 2 = velocity mode */
+#define RS_SPD_REF    0x700A  /* float rad/s */
+#define RS_LIMIT_CUR  0x7018  /* float A */
+#define RS_ACC_RAD    0x7022  /* float rad/s^2 */
+
+#define TARGET_RPM    470.0f                          /* output shaft speed */
+#define TARGET_RAD_S  (TARGET_RPM * 2.0f * 3.14159265f / 60.0f)  /* = 31.4 rad/s */
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+FDCAN_HandleTypeDef hfdcan1;
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_FDCAN1_Init(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+extern USBD_HandleTypeDef hUsbDeviceFS;
+
+/* Print a line over USB. Drops the line if the terminal isn't reading. */
+static void usb_print(const char *s)
+{
+  static char buf[128];
+  USBD_CDC_HandleTypeDef *h = (USBD_CDC_HandleTypeDef *)hUsbDeviceFS.pClassData;
+  if (h == NULL) return;
+  uint32_t t = HAL_GetTick();
+  while (h->TxState != 0 && HAL_GetTick() - t < 20) {}
+  if (h->TxState != 0) return;
+  strncpy(buf, s, sizeof buf - 1);
+  buf[sizeof buf - 1] = 0;
+  CDC_Transmit_FS((uint8_t *)buf, strlen(buf));
+}
+
+/* RobStride private protocol: 29-bit ID = type<<24 | host<<8 | motor */
+static HAL_StatusTypeDef rs_send(uint8_t type, uint8_t data[8])
+{
+  FDCAN_TxHeaderTypeDef h = {0};
+  h.Identifier          = ((uint32_t)type << 24) | ((uint32_t)HOST_ID << 8) | MOTOR_ID;
+  h.IdType              = FDCAN_EXTENDED_ID;
+  h.TxFrameType         = FDCAN_DATA_FRAME;
+  h.DataLength          = FDCAN_DLC_BYTES_8;
+  h.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+  h.BitRateSwitch       = FDCAN_BRS_OFF;
+  h.FDFormat            = FDCAN_CLASSIC_CAN;
+  h.TxEventFifoControl  = FDCAN_NO_TX_EVENTS;
+  h.MessageMarker       = 0;
+  return HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &h, data);
+}
+
+static void rs_enable(void) { uint8_t d[8] = {0}; rs_send(3, d); }   /* type 3: enable */
+static void rs_stop(void)   { uint8_t d[8] = {0}; rs_send(4, d); }   /* type 4: stop   */
+
+static void rs_write_u8(uint16_t index, uint8_t value)              /* type 18: write param */
+{
+  uint8_t d[8] = {0};
+  d[0] = index & 0xFF; d[1] = index >> 8; d[4] = value;
+  rs_send(18, d);
+}
+
+static void rs_write_float(uint16_t index, float value)
+{
+  uint8_t d[8] = {0};
+  d[0] = index & 0xFF; d[1] = index >> 8;
+  memcpy(&d[4], &value, 4);
+  rs_send(18, d);
+}
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USB_Device_Init();
+  MX_FDCAN1_Init();
+  /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(CAN_STB_GPIO_Port,   CAN_STB_Pin,   GPIO_PIN_RESET); /* transceiver out of standby */
+  HAL_GPIO_WritePin(CAN_RX_EN_GPIO_Port, CAN_RX_EN_Pin, GPIO_PIN_RESET); /* route transceiver RXD to PB8 */
+
+  HAL_FDCAN_ConfigGlobalFilter(&hfdcan1, FDCAN_ACCEPT_IN_RX_FIFO0, FDCAN_ACCEPT_IN_RX_FIFO0,
+                               FDCAN_REJECT_REMOTE, FDCAN_REJECT_REMOTE);
+  if (HAL_FDCAN_Start(&hfdcan1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  HAL_Delay(3000);                               /* time to open screen */
+  usb_print("CAN up, configuring motor\r\n");
+  rs_stop();                         HAL_Delay(20);
+  rs_write_u8(RS_RUN_MODE, 2);       HAL_Delay(20);  /* velocity mode */
+  rs_enable();                       HAL_Delay(20);
+  rs_write_float(RS_LIMIT_CUR, 2.0f); HAL_Delay(20); /* 2 A current limit */
+  rs_write_float(RS_ACC_RAD, 20.0f); HAL_Delay(20);  /* ramps 0 -> 300 rpm in ~1.6 s */
+  usb_print("motor enabled\r\n");
+  uint32_t t0 = HAL_GetTick();
+  char line[96];
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+    /* 8 s at 300 rpm, then 4 s stopped, repeat */
+    uint32_t phase = (HAL_GetTick() - t0) % 12000;
+    float target = (phase < 8000) ? TARGET_RAD_S : 0.0f;
+    rs_write_float(RS_SPD_REF, target);
+
+    /* read motor replies (type 2 = feedback) */
+    FDCAN_RxHeaderTypeDef rh;
+    uint8_t rd[8];
+    while (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0) > 0)
+    {
+      if (HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &rh, rd) != HAL_OK) break;
+      if (((rh.Identifier >> 24) & 0x1F) == 2)
+      {
+        uint16_t raw = ((uint16_t)rd[2] << 8) | rd[3];
+        int mrad_s = (int)(((float)raw - 32767.5f) * 50000.0f / 32767.5f);
+        snprintf(line, sizeof line, "motor %lu: target %d rpm, speed %d rpm, fault 0x%02lX\r\n",
+                 (unsigned long)((rh.Identifier >> 8) & 0xFF), (int)(target * 60.0f / 6.2832f),
+                 (int)(mrad_s * 60 / 6283), (unsigned long)((rh.Identifier >> 16) & 0x3F));
+        usb_print(line);
+      }
+    }
+
+    /* report bus problems */
+    FDCAN_ErrorCountersTypeDef ec;
+    FDCAN_ProtocolStatusTypeDef ps;
+    HAL_FDCAN_GetErrorCounters(&hfdcan1, &ec);
+    HAL_FDCAN_GetProtocolStatus(&hfdcan1, &ps);
+    if (ec.TxErrorCnt > 0 || ps.BusOff)
+    {
+      snprintf(line, sizeof line, "CAN errors: tx=%lu rx=%lu busoff=%lu\r\n",
+               (unsigned long)ec.TxErrorCnt, (unsigned long)ec.RxErrorCnt, (unsigned long)ps.BusOff);
+      usb_print(line);
+    }
+
+    HAL_Delay(100);
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_CRSInitTypeDef pInit = {0};
+
+  /** Configure the main internal regulator output voltage
+  */
+  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSI48;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Enable the SYSCFG APB clock
+  */
+  __HAL_RCC_CRS_CLK_ENABLE();
+
+  /** Configures CRS
+  */
+  pInit.Prescaler = RCC_CRS_SYNC_DIV1;
+  pInit.Source = RCC_CRS_SYNC_SOURCE_USB;
+  pInit.Polarity = RCC_CRS_SYNC_POLARITY_RISING;
+  pInit.ReloadValue = __HAL_RCC_CRS_RELOADVALUE_CALCULATE(48000000,1000);
+  pInit.ErrorLimitValue = 34;
+  pInit.HSI48CalibrationValue = 32;
+
+  HAL_RCCEx_CRSConfig(&pInit);
+}
+
+/**
+  * @brief FDCAN1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_FDCAN1_Init(void)
+{
+
+  /* USER CODE BEGIN FDCAN1_Init 0 */
+
+  /* USER CODE END FDCAN1_Init 0 */
+
+  /* USER CODE BEGIN FDCAN1_Init 1 */
+
+  /* USER CODE END FDCAN1_Init 1 */
+  hfdcan1.Instance = FDCAN1;
+  hfdcan1.Init.ClockDivider = FDCAN_CLOCK_DIV1;
+  hfdcan1.Init.FrameFormat = FDCAN_FRAME_CLASSIC;
+  hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
+  hfdcan1.Init.AutoRetransmission = ENABLE;
+  hfdcan1.Init.TransmitPause = DISABLE;
+  hfdcan1.Init.ProtocolException = DISABLE;
+  hfdcan1.Init.NominalPrescaler = 1;
+  hfdcan1.Init.NominalSyncJumpWidth = 4;
+  hfdcan1.Init.NominalTimeSeg1 = 11;
+  hfdcan1.Init.NominalTimeSeg2 = 4;
+  hfdcan1.Init.DataPrescaler = 1;
+  hfdcan1.Init.DataSyncJumpWidth = 1;
+  hfdcan1.Init.DataTimeSeg1 = 1;
+  hfdcan1.Init.DataTimeSeg2 = 1;
+  hfdcan1.Init.StdFiltersNbr = 0;
+  hfdcan1.Init.ExtFiltersNbr = 0;
+  hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
+  if (HAL_FDCAN_Init(&hfdcan1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN FDCAN1_Init 2 */
+
+  /* USER CODE END FDCAN1_Init 2 */
+
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+
+  /* USER CODE END MX_GPIO_Init_1 */
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(CAN_STB_GPIO_Port, CAN_STB_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(CAN_RX_EN_GPIO_Port, CAN_RX_EN_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin : CAN_STB_Pin */
+  GPIO_InitStruct.Pin = CAN_STB_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(CAN_STB_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : CAN_RX_EN_Pin */
+  GPIO_InitStruct.Pin = CAN_RX_EN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(CAN_RX_EN_GPIO_Port, &GPIO_InitStruct);
+
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+
+  /* USER CODE END MX_GPIO_Init_2 */
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+#ifdef USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
