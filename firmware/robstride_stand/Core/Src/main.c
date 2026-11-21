@@ -38,15 +38,15 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define N_MOTORS            2
-#define TARGET_JOINT_DEG    28.0f   /* where to go, normalized joint degrees */
+#define TARGET_JOINT_DEG    35.0f   /* where to go, normalized joint degrees */
 #define RAMP_DEG_PER_S      10.0f   /* how fast the target moves             */
-#define KP                   5.0f   /* Nm/rad                                */
+#define KP                   12.0f   /* Nm/rad                                */
 #define KD                   0.5f   /* Nm*s/rad                              */
 #define CTRL_PERIOD_MS       5u     /* 200 Hz command rate per motor         */
 #define FEEDBACK_TIMEOUT_MS 50u     /* stop if a motor goes quiet this long  */
 /* Torque step-up: while a joint is short of its target, add feed-forward
- * torque at TFF_RATE; once within REACHED_TOL_DEG of the final target,
- * freeze that torque and keep holding it.                                */
+ * torque at TFF_RATE; if it overshoots, take torque away at the same rate.
+ * Inside REACHED_TOL_DEG of the final target the torque is held as is.  */
 #define TFF_RATE_NM_PER_S    1.0f   /* how fast the extra torque grows       */
 #define TFF_MAX_NM           8.0f   /* safety cap (RS01 peak is 17 Nm)       */
 #define REACHED_TOL_DEG      1.0f   /* "close enough" to the target          */
@@ -67,7 +67,7 @@ volatile uint8_t stop_request = 0;   /* set by usbd_cdc_if.c on any keypress */
 
 static const uint8_t motor_ids[N_MOTORS]      = {1, 2};            /* right, left */
 static const float   motor_sign[N_MOTORS]     = {-1.0f, 1.0f};
-static const float   motor_rest_deg[N_MOTORS] = {-10.80f, -46.37f}; /* measured 11-20 */
+static const float   motor_rest_deg[N_MOTORS] = {-10.80f, -46.37f}; /* measured 11/20/26 */
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -176,7 +176,7 @@ int main(void)
     Error_Handler();
   }
 
-  /* Give you 5 s to open the terminal before anything moves. */
+  /* Give user 5 s to open the terminal before anything moves. */
   HAL_Delay(5000);
 
   /* 1) Read where BOTH motors are now. Enable nothing unless both answer. */
@@ -215,9 +215,12 @@ int main(void)
     /* 2) Reset mode, operation-control mode (run_mode 0), enable, and
      *    first command = hold the CURRENT angle so nothing jumps.        */
     for (int i = 0; i < N_MOTORS; i++) {
-      RS_Stop(&hfdcan1, motor_ids[i]);              HAL_Delay(2);
-      RS_SetRunMode(&hfdcan1, motor_ids[i], 0);     HAL_Delay(2);
-      RS_Enable(&hfdcan1, motor_ids[i]);            HAL_Delay(2);
+      RS_Stop(&hfdcan1, motor_ids[i]);
+      HAL_Delay(2);
+      RS_SetRunMode(&hfdcan1, motor_ids[i], 0);
+      HAL_Delay(2);
+      RS_Enable(&hfdcan1, motor_ids[i]);
+      HAL_Delay(2);
       RS_Control(&hfdcan1, motor_ids[i], start_rad[i], 0.0f, KP, KD, 0.0f);
       HAL_Delay(2);
     }
@@ -251,19 +254,19 @@ int main(void)
     for (int i = 0; i < N_MOTORS; i++) {
       joint_target[i] = ramp(start_joint[i], TARGET_JOINT_DEG, step);
 
-      /* Step up the extra torque until the joint gets there, then freeze it. */
+      /* Adjust the extra torque in BOTH directions: more push while the joint
+       * is below target, less push once it has overshot. Inside the
+       * +/-REACHED_TOL_DEG band the torque is left alone (HOLD).           */
       float err = joint_target[i] - raw_to_joint_deg(i, fb[i].pos_rad * RAD2DEG);
-      if (!reached[i]) {
-        if (joint_target[i] == TARGET_JOINT_DEG && fabsf(err) < REACHED_TOL_DEG) {
-          reached[i] = true;                     /* hold this torque from now on */
-        } else if (fabsf(err) >= REACHED_TOL_DEG) {
-          /* push in the direction of the error; motor sign converts joint
-           * direction to motor direction (ID 1 is mirrored)              */
-          float d = TFF_RATE_NM_PER_S * CTRL_PERIOD_MS / 1000.0f;
-          tff[i] += (err > 0.0f ? d : -d) * motor_sign[i];
-          if (tff[i] >  TFF_MAX_NM) tff[i] =  TFF_MAX_NM;
-          if (tff[i] < -TFF_MAX_NM) tff[i] = -TFF_MAX_NM;
-        }
+      reached[i] = (joint_target[i] == TARGET_JOINT_DEG &&
+                    fabsf(err) < REACHED_TOL_DEG);
+      if (fabsf(err) >= REACHED_TOL_DEG) {
+        /* motor sign converts joint direction to motor direction (ID 1 is
+         * mirrored)                                                       */
+        float d = TFF_RATE_NM_PER_S * CTRL_PERIOD_MS / 1000.0f;
+        tff[i] += (err > 0.0f ? d : -d) * motor_sign[i];
+        if (tff[i] >  TFF_MAX_NM) tff[i] =  TFF_MAX_NM;
+        if (tff[i] < -TFF_MAX_NM) tff[i] = -TFF_MAX_NM;
       }
 
       RS_Control(&hfdcan1, motor_ids[i],
