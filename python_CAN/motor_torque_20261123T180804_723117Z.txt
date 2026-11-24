@@ -1,0 +1,17 @@
+2026-11-23T18:08:04.723Z INFO Log file: C:\Users\mk3ow\OneDrive\Documents\PlatformIO\Projects\sdp27\python_CAN\motor_torque_20261123T180804_723117Z.txt (timestamps in UTC)
+2026-11-23T18:08:04.723Z INFO channel=COM15 target_deg=20.0 ramp_seconds=6.0 KP=20.000 KD=0.200 calibration={'motor_1': {'direction': -1, 'homing_offset': -0.972}}
+2026-11-23T18:08:06.747Z INFO CAN bus connected
+2026-11-23T18:08:06.867Z ERROR motor_1 torque=unavailable mode=monitor_only stage=setup error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:06.982Z ERROR motor_1 disable not confirmed: No matching response from motor_1 within timeout
+2026-11-23T18:08:06.985Z INFO Ramping available motors to 20.0 degrees over 6.0 seconds, then holding. Ctrl+C stops monitoring and disables both motors.
+2026-11-23T18:08:07.099Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:08.103Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:09.098Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:10.093Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:11.110Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:12.110Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:13.113Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:08:13.184Z INFO User requested stop; disabling motors
+2026-11-23T18:08:13.298Z ERROR motor_1 shutdown disable not confirmed: No matching response from motor_1 within timeout
+2026-11-23T18:08:13.300Z INFO CAN bus disconnected
+2026-11-23T18:08:13.300Z INFO Monitoring stopped; saving log

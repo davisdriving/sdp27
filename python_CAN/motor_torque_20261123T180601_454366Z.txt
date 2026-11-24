@@ -1,0 +1,129 @@
+2026-11-23T18:06:01.459Z INFO Log file: C:\Users\mk3ow\OneDrive\Documents\PlatformIO\Projects\sdp27\python_CAN\motor_torque_20261123T180601_454366Z.txt (timestamps in UTC)
+2026-11-23T18:06:01.459Z INFO channel=COM15 target_deg=20.0 ramp_seconds=6.0 KP=20.000 KD=0.200 calibration={'motor_1': {'direction': -1, 'homing_offset': -0.972}}
+2026-11-23T18:06:03.469Z INFO CAN bus connected
+2026-11-23T18:06:03.472Z INFO motor_1 status_mode=0 fault_flags=none
+2026-11-23T18:06:03.474Z INFO motor_1 starting_angle_deg=-31.232
+2026-11-23T18:06:03.474Z INFO motor_1 status_mode=2 fault_flags=none
+2026-11-23T18:06:03.477Z INFO Ramping available motors to 20.0 degrees over 6.0 seconds, then holding. Ctrl+C stops monitoring and disables both motors.
+2026-11-23T18:06:03.477Z INFO motor_1 mode=control torque=0.0498 Nm angle_deg=-31.235 target_deg=-31.232 velocity_rad_s=0.0393 temperature_C=22.6
+2026-11-23T18:06:03.501Z INFO motor_1 mode=control torque=2.8561 Nm angle_deg=-29.521 target_deg=-30.968 velocity_rad_s=1.2760 temperature_C=22.6
+2026-11-23T18:06:03.521Z INFO motor_1 mode=control torque=3.4397 Nm angle_deg=-28.071 target_deg=-30.831 velocity_rad_s=0.5811 temperature_C=22.6
+2026-11-23T18:06:03.544Z INFO motor_1 mode=control torque=2.9837 Nm angle_deg=-27.588 target_deg=-30.566 velocity_rad_s=0.2065 temperature_C=22.6
+2026-11-23T18:06:03.565Z INFO motor_1 mode=control torque=2.7487 Nm angle_deg=-27.126 target_deg=-30.430 velocity_rad_s=0.3182 temperature_C=22.6
+2026-11-23T18:06:03.587Z INFO motor_1 mode=control torque=2.5417 Nm angle_deg=-26.313 target_deg=-30.293 velocity_rad_s=0.5902 temperature_C=22.6
+2026-11-23T18:06:03.610Z INFO motor_1 mode=control torque=2.3258 Nm angle_deg=-25.412 target_deg=-30.028 velocity_rad_s=0.5096 temperature_C=22.6
+2026-11-23T18:06:03.631Z INFO motor_1 mode=control torque=2.1640 Nm angle_deg=-24.577 target_deg=-29.900 velocity_rad_s=0.4633 temperature_C=22.6
+2026-11-23T18:06:03.655Z INFO motor_1 mode=control torque=2.1583 Nm angle_deg=-23.962 target_deg=-29.627 velocity_rad_s=0.2276 temperature_C=22.6
+2026-11-23T18:06:03.677Z INFO motor_1 mode=control torque=2.0976 Nm angle_deg=-23.808 target_deg=-29.499 velocity_rad_s=-0.0091 temperature_C=22.6
+2026-11-23T18:06:03.701Z INFO motor_1 mode=control torque=1.9160 Nm angle_deg=-23.676 target_deg=-29.226 velocity_rad_s=0.1269 temperature_C=22.6
+2026-11-23T18:06:03.723Z INFO motor_1 mode=control torque=2.0436 Nm angle_deg=-23.413 target_deg=-29.098 velocity_rad_s=0.1581 temperature_C=22.6
+2026-11-23T18:06:03.747Z INFO motor_1 mode=control torque=1.9767 Nm angle_deg=-22.973 target_deg=-28.833 velocity_rad_s=0.2790 temperature_C=22.6
+2026-11-23T18:06:03.771Z INFO motor_1 mode=control torque=1.7972 Nm angle_deg=-22.402 target_deg=-28.696 velocity_rad_s=0.2911 temperature_C=22.6
+2026-11-23T18:06:03.793Z INFO motor_1 mode=control torque=1.5092 Nm angle_deg=-21.831 target_deg=-28.432 velocity_rad_s=0.3182 temperature_C=22.6
+2026-11-23T18:06:03.816Z INFO motor_1 mode=control torque=1.7219 Nm angle_deg=-21.281 target_deg=-28.295 velocity_rad_s=0.2820 temperature_C=22.6
+2026-11-23T18:06:03.842Z INFO motor_1 mode=control torque=1.5627 Nm angle_deg=-21.127 target_deg=-28.158 velocity_rad_s=0.0030 temperature_C=22.6
+2026-11-23T18:06:03.848Z INFO motor_1 mode=control torque=1.6026 Nm angle_deg=-21.127 target_deg=-28.030 velocity_rad_s=-0.0070 temperature_C=22.6
+2026-11-23T18:06:03.871Z INFO motor_1 mode=control torque=1.5326 Nm angle_deg=-21.149 target_deg=-27.766 velocity_rad_s=0.0091 temperature_C=22.6
+2026-11-23T18:06:03.897Z INFO motor_1 mode=control torque=1.9092 Nm angle_deg=-21.215 target_deg=-27.629 velocity_rad_s=0.0886 temperature_C=22.6
+2026-11-23T18:06:03.918Z INFO motor_1 mode=control torque=1.8060 Nm angle_deg=-21.215 target_deg=-27.364 velocity_rad_s=0.0645 temperature_C=22.6
+2026-11-23T18:06:03.941Z INFO motor_1 mode=control torque=2.0405 Nm angle_deg=-21.193 target_deg=-27.228 velocity_rad_s=-0.0070 temperature_C=22.6
+2026-11-23T18:06:03.964Z INFO motor_1 mode=control torque=2.0758 Nm angle_deg=-21.149 target_deg=-27.091 velocity_rad_s=0.0161 temperature_C=22.6
+2026-11-23T18:06:03.988Z INFO motor_1 mode=control torque=1.9092 Nm angle_deg=-21.084 target_deg=-26.826 velocity_rad_s=0.1440 temperature_C=22.6
+2026-11-23T18:06:04.011Z INFO motor_1 mode=control torque=2.0270 Nm angle_deg=-20.842 target_deg=-26.698 velocity_rad_s=0.1259 temperature_C=22.6
+2026-11-23T18:06:04.033Z INFO motor_1 mode=control torque=2.1318 Nm angle_deg=-20.754 target_deg=-26.425 velocity_rad_s=-0.0393 temperature_C=22.6
+2026-11-23T18:06:04.057Z INFO motor_1 mode=control torque=2.1588 Nm angle_deg=-20.644 target_deg=-26.297 velocity_rad_s=0.0453 temperature_C=22.6
+2026-11-23T18:06:04.080Z INFO motor_1 mode=control torque=2.1972 Nm angle_deg=-20.490 target_deg=-26.024 velocity_rad_s=0.1762 temperature_C=22.6
+2026-11-23T18:06:04.105Z INFO motor_1 mode=control torque=2.1982 Nm angle_deg=-20.249 target_deg=-25.896 velocity_rad_s=0.1460 temperature_C=22.6
+2026-11-23T18:06:04.111Z INFO motor_1 mode=control torque=1.9881 Nm angle_deg=-20.205 target_deg=-25.759 velocity_rad_s=0.0775 temperature_C=22.6
+2026-11-23T18:06:04.134Z INFO motor_1 mode=control torque=2.0597 Nm angle_deg=-20.051 target_deg=-25.631 velocity_rad_s=0.0967 temperature_C=22.6
+2026-11-23T18:06:04.157Z INFO motor_1 mode=control torque=2.1951 Nm angle_deg=-19.853 target_deg=-25.358 velocity_rad_s=0.1732 temperature_C=22.6
+2026-11-23T18:06:04.180Z INFO motor_1 mode=control torque=2.2065 Nm angle_deg=-19.677 target_deg=-25.230 velocity_rad_s=0.1380 temperature_C=22.6
+2026-11-23T18:06:04.206Z INFO motor_1 mode=control torque=1.8522 Nm angle_deg=-19.545 target_deg=-24.956 velocity_rad_s=0.1309 temperature_C=22.6
+2026-11-23T18:06:04.229Z INFO motor_1 mode=control torque=2.0052 Nm angle_deg=-19.304 target_deg=-24.828 velocity_rad_s=0.1642 temperature_C=22.6
+2026-11-23T18:06:04.250Z INFO motor_1 mode=control torque=2.0504 Nm angle_deg=-18.996 target_deg=-24.564 velocity_rad_s=0.2135 temperature_C=22.6
+2026-11-23T18:06:04.274Z INFO motor_1 mode=control torque=1.9196 Nm angle_deg=-18.666 target_deg=-24.427 velocity_rad_s=0.1974 temperature_C=22.6
+2026-11-23T18:06:04.296Z INFO motor_1 mode=control torque=1.7588 Nm angle_deg=-18.293 target_deg=-24.162 velocity_rad_s=0.2659 temperature_C=22.6
+2026-11-23T18:06:04.321Z INFO motor_1 mode=control torque=1.7515 Nm angle_deg=-17.875 target_deg=-24.026 velocity_rad_s=0.2286 temperature_C=22.6
+2026-11-23T18:06:04.342Z INFO motor_1 mode=control torque=1.9928 Nm angle_deg=-17.568 target_deg=-23.761 velocity_rad_s=0.1954 temperature_C=22.6
+2026-11-23T18:06:04.366Z INFO motor_1 mode=control torque=1.6789 Nm angle_deg=-17.282 target_deg=-23.624 velocity_rad_s=0.1480 temperature_C=22.6
+2026-11-23T18:06:04.388Z INFO motor_1 mode=control torque=1.7344 Nm angle_deg=-17.040 target_deg=-23.360 velocity_rad_s=0.1037 temperature_C=22.6
+2026-11-23T18:06:04.409Z INFO motor_1 mode=control torque=1.9471 Nm angle_deg=-16.843 target_deg=-23.223 velocity_rad_s=0.0342 temperature_C=22.6
+2026-11-23T18:06:04.432Z INFO motor_1 mode=control torque=1.9559 Nm angle_deg=-16.843 target_deg=-23.095 velocity_rad_s=0.0010 temperature_C=22.6
+2026-11-23T18:06:04.457Z INFO motor_1 mode=control torque=1.8771 Nm angle_deg=-16.821 target_deg=-22.822 velocity_rad_s=0.0282 temperature_C=22.6
+2026-11-23T18:06:04.479Z INFO motor_1 mode=control torque=1.9295 Nm angle_deg=-16.799 target_deg=-22.694 velocity_rad_s=-0.0383 temperature_C=22.6
+2026-11-23T18:06:04.502Z INFO motor_1 mode=control torque=2.1266 Nm angle_deg=-16.821 target_deg=-22.429 velocity_rad_s=0.0201 temperature_C=22.6
+2026-11-23T18:06:04.525Z INFO motor_1 mode=control torque=2.2169 Nm angle_deg=-16.843 target_deg=-22.292 velocity_rad_s=0.0332 temperature_C=22.6
+2026-11-23T18:06:04.548Z INFO motor_1 mode=control torque=2.1422 Nm angle_deg=-16.843 target_deg=-22.028 velocity_rad_s=0.0363 temperature_C=22.6
+2026-11-23T18:06:04.572Z INFO motor_1 mode=control torque=2.1520 Nm angle_deg=-16.843 target_deg=-21.891 velocity_rad_s=-0.1057 temperature_C=22.6
+2026-11-23T18:06:04.596Z INFO motor_1 mode=control torque=2.3191 Nm angle_deg=-16.821 target_deg=-21.626 velocity_rad_s=0.0181 temperature_C=22.6
+2026-11-23T18:06:04.620Z INFO motor_1 mode=control torque=2.3663 Nm angle_deg=-16.777 target_deg=-21.490 velocity_rad_s=0.0423 temperature_C=22.6
+2026-11-23T18:06:04.641Z INFO motor_1 mode=control torque=2.2605 Nm angle_deg=-16.689 target_deg=-21.225 velocity_rad_s=0.0584 temperature_C=22.6
+2026-11-23T18:06:04.664Z INFO motor_1 mode=control torque=2.4348 Nm angle_deg=-16.579 target_deg=-21.088 velocity_rad_s=0.1350 temperature_C=22.6
+2026-11-23T18:06:04.690Z INFO motor_1 mode=control torque=2.4109 Nm angle_deg=-16.535 target_deg=-20.824 velocity_rad_s=0.0141 temperature_C=22.6
+2026-11-23T18:06:04.812Z ERROR motor_1 torque=unavailable mode=monitor_only stage=control error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:04.928Z ERROR motor_1 disable not confirmed: No matching response from motor_1 within timeout
+2026-11-23T18:06:05.034Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:06.044Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:07.048Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:08.046Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:09.069Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:10.068Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:11.074Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:12.066Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:13.068Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:14.072Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:15.062Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:16.072Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:17.071Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:18.059Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:19.074Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:20.062Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:21.063Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:22.063Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:23.059Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:24.079Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:25.081Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:26.083Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:27.079Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:28.083Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:29.088Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:30.087Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:31.088Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:32.085Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:33.077Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:34.105Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:35.120Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:36.110Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:37.109Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:38.126Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:39.146Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:40.149Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:41.156Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:42.161Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:43.166Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:44.154Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:45.174Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:46.169Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:47.188Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:48.199Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:49.188Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:50.199Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:51.184Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:52.203Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:53.191Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:54.191Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:55.197Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:56.197Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:57.205Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:58.218Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:06:59.221Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:00.223Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:01.217Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:02.219Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:03.226Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:04.216Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:05.220Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:05.579Z INFO User requested stop; disabling motors
+2026-11-23T18:07:05.700Z ERROR motor_1 shutdown disable not confirmed: No matching response from motor_1 within timeout
+2026-11-23T18:07:05.702Z INFO CAN bus disconnected
+2026-11-23T18:07:05.702Z INFO Monitoring stopped; saving log

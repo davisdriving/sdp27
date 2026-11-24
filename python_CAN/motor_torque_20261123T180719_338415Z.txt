@@ -1,0 +1,14 @@
+2026-11-23T18:07:19.338Z INFO Log file: C:\Users\mk3ow\OneDrive\Documents\PlatformIO\Projects\sdp27\python_CAN\motor_torque_20261123T180719_338415Z.txt (timestamps in UTC)
+2026-11-23T18:07:19.338Z INFO channel=COM15 target_deg=20.0 ramp_seconds=6.0 KP=20.000 KD=0.200 calibration={'motor_1': {'direction': -1, 'homing_offset': -0.972}}
+2026-11-23T18:07:21.360Z INFO CAN bus connected
+2026-11-23T18:07:21.470Z ERROR motor_1 torque=unavailable mode=monitor_only stage=setup error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:21.586Z ERROR motor_1 disable not confirmed: No matching response from motor_1 within timeout
+2026-11-23T18:07:21.589Z INFO Ramping available motors to 20.0 degrees over 6.0 seconds, then holding. Ctrl+C stops monitoring and disables both motors.
+2026-11-23T18:07:21.714Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:22.687Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:23.699Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:24.693Z ERROR motor_1 torque=unavailable mode=monitor_only stage=monitor error=TimeoutError: No matching response from motor_1 within timeout
+2026-11-23T18:07:24.872Z INFO User requested stop; disabling motors
+2026-11-23T18:07:24.985Z ERROR motor_1 shutdown disable not confirmed: No matching response from motor_1 within timeout
+2026-11-23T18:07:24.985Z INFO CAN bus disconnected
+2026-11-23T18:07:24.985Z INFO Monitoring stopped; saving log

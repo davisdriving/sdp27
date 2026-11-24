@@ -5,11 +5,10 @@ from robstride_dynamics import RobstrideBus, ParameterType, Motor
 
 calibration = {
     "motor_1": {"direction":  -1, "homing_offset":  -.972},
-    "motor_2": {"direction": 1, "homing_offset": -.82},
 }
 
 
-motors={"motor_1": Motor(id=1, model="rs-01"), "motor_2": Motor(id=2, model="rs-01")}
+motors={"motor_1": Motor(id=127, model="rs-01")}
 CHANNEL = "COM15"
 
 try:
